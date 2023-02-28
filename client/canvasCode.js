@@ -1,10 +1,8 @@
 const WORLD_SIZE = 500;
 const PORT = 8080;
 
-let mousePosition = {};
+let mousePosition = { x: 0, y: 0 };
 
-player.posX = Math.floor(Math.random() * WORLD_SIZE + 10);
-player.posY = Math.floor(Math.random() * WORLD_SIZE + 10);
 function draw() {
   //clear screen
   context.setTransform(1, 0, 0, 1, 0, 0);
@@ -19,7 +17,7 @@ function draw() {
     // draw player circle
     context.beginPath();
     context.fillStyle = p.color; // fill red
-    context.arc(p.posX, p.posY, 10, 0, 2 * Math.PI);
+    context.arc(p.posX, p.posY, p.orbRadius, 0, 2 * Math.PI);
     context.fill();
     context.lineWidth = 3;
     context.strokeStyle = "rgb(0,255,0)";
@@ -29,13 +27,11 @@ function draw() {
   orbs.forEach((orb) => {
     context.beginPath();
     context.fillStyle = orb.color;
-    context.arc(orb.posX, orb.posY, 5, 0, 2 * Math.PI);
+    context.arc(orb.posX, orb.posY, orb.orbRadius, 0, 2 * Math.PI);
     context.fill();
   });
 
-  if (mousePosition.x) {
-    movePlayer();
-  }
+  movePlayer();
   requestAnimationFrame(draw); //recursively calls self
 }
 
@@ -69,20 +65,6 @@ function movePlayer() {
     yVector = 1 - (angleDeg + 90) / 90;
   }
 
-  speed = 1;
-  xV = xVector;
-  yV = yVector;
-
-  // update player pos
-  if ((player.posX < 5 && xV < 0) || (player.posX > WORLD_SIZE && xV > 0)) {
-    player.posY -= speed * yV;
-  } else if (
-    (player.posY < 5 && yV > 0) ||
-    (player.posY > WORLD_SIZE && yV < 0)
-  ) {
-    player.posX += speed * xV;
-  } else {
-    player.posX += speed * xV;
-    player.posY -= speed * yV;
-  }
+  player.xVector = xVector;
+  player.yVector = yVector;
 }
