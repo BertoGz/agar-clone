@@ -1,6 +1,8 @@
+const { v4: uuidv4 } = require('uuid');
 // data about the position, name, and color of player
 class PlayerData {
   constructor(playerName, settings) {
+    this.uid = uuidv4();
     this.playerName = playerName;
     this.posX = Math.floor(Math.random() * settings.worldSize + 10);
     this.posY = Math.floor(Math.random() * settings.worldSize + 10);
