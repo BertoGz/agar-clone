@@ -7,7 +7,7 @@ class Orb {
     this.color = getRandomColor();
     this.posX = Math.floor(Math.random() * settings.worldSize);
     this.posY = Math.floor(Math.random() * settings.worldSize);
-    this.radius = 5;
+    this.orbRadius = settings.defaultOrbRadius;
   }
 }
 module.exports = Orb;
