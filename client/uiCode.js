@@ -24,7 +24,8 @@ $(".name-form").submit((event) => {
 
 $(".start-game").click(() => {
   $(".modal").modal("hide");
-  document.querySelector(".hiddenOnStart").removeAttribute("hidden");
+  $('.hiddenOnStart').removeAttr('hidden');
   //$(".hiddenOnStart").removeAttr("hidden");
   init();
 });
+ 
