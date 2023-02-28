@@ -6,6 +6,8 @@ class PlayerData {
     this.posY = Math.floor(Math.random() * settings.worldSize + 10);
     this.orbRadius = settings.defaultOrbRadius;
     this.color = this.getRandomColor();
+    this.score = 0;
+    this.orbsAbsorbed = 0;
   }
   getRandomColor() {
     const randColor = () => Math.floor(Math.random() * 255);
@@ -13,4 +15,3 @@ class PlayerData {
   }
 }
 module.exports = PlayerData;
- 
