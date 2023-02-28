@@ -113,6 +113,15 @@ io.on("connect", (socket) => {
       })
       .catch(() => {});
   });
+  socket.on("disconnect", (data) => {
+    console.log("disconnected", data);
+    allPlayerData.forEach((curr, i) => {
+      if (curr.uid === player.playerData.uid) {
+        allPlayerData.splice(i, 1);
+      }
+    });
+    //  const updateStats =
+  });
 });
 function getLeaderBoard() {
   // sort player array by score
