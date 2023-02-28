@@ -26,11 +26,13 @@ socket.on("orb-collision", (data) => {
   orbs.splice(data.orbIndex, 1, data.newOrb);
 });
 socket.on("update-leaderboard", (data) => {
-  console.log("data!!", data);
+  const {leaderboard,myScore} = data || {}
+
   document.querySelector(".leader-board").innerHTML = "";
-  data.forEach((currPlayer) => {
+  leaderboard.forEach((currPlayer) => {
     document.querySelector(
       ".leader-board"
-    ).innerHTML += `<li class="leaderboard-player">${currPlayer.name} -${currPlayer.score} </li>`;
+    ).innerHTML += `<li class="leaderboard-player">${currPlayer.name} - ${currPlayer.score} </li>`;
   });
+  document.querySelector(".player-score").innerHTML = `${myScore}`;
 });

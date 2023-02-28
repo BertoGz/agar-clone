@@ -91,7 +91,10 @@ io.on("connect", (socket) => {
         };
         // emit to clients about this
         socket.emit("orb-collision", orbData);
-        socket.emit("update-leaderboard", getLeaderBoard());
+        socket.emit("update-leaderboard", {
+          leaderboard: getLeaderBoard(),
+          myScore: player.playerData.score,
+        });
       })
       .catch((d) => {});
     let playerDeath = checkForPlayerCollisions(
@@ -103,7 +106,10 @@ io.on("connect", (socket) => {
     playerDeath
       .then((data) => {
         console.log("a player collision!", data);
-        socket.emit("update-leaderboard", getLeaderBoard( ));
+        socket.emit("update-leaderboard", {
+          leaderboard: getLeaderBoard(),
+          myScore: player.playerData.score,
+        });
       })
       .catch(() => {});
   });
